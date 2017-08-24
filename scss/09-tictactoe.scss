@@ -26,6 +26,14 @@ body {
             border: 1px solid #ccc;
             background-color: #aaa;
             cursor: pointer;
+            color: white;
+            font-weight: 900;
+            &.X {
+                background-color: teal;
+            }
+            &.O {
+                background-color: orange;
+            }
         }
     }
 }
