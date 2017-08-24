@@ -72,14 +72,15 @@ function start() {
     var current_player = p1;
     var has_winner = false;
 
+    $("#current").addClass(current_player);
     $(".cell").click(function(e) {
 
         var x = $(this).attr("data-x");
         var y = $(this).attr("data-y");
         var move = makeMove(x, y, current_player, board, moves);
         if (move) {
-            $("#cell-" + x + y).html(current_player).addClass(current_player);
-
+            $("#cell-" + x + y).addClass(current_player);
+            $("#current").removeClass(current_player);
             if (moves > 3) {
                 has_winner = winnerCheck(board, current_player);
             }
@@ -93,11 +94,13 @@ function start() {
                     current_player = p1;
                 }
                 moves++;
+                $("#current").addClass(current_player);
             }
 
             if (moves == 9 && !has_winner) {
                 alert('It\'s atay!');
             }
+
         }
 
     });

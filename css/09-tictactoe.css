@@ -31,4 +31,12 @@ body {
       #board .row .cell.O {
         background-color: orange; }
 
+#current {
+  padding: 10px;
+  color: white; }
+  #current.X {
+    background-color: teal; }
+  #current.O {
+    background-color: orange; }
+
 /*# sourceMappingURL=09-tictactoe.css.map */

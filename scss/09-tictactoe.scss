@@ -37,3 +37,14 @@ body {
         }
     }
 }
+
+#current {
+    padding: 10px;
+    color: white;
+    &.X {
+        background-color: teal;
+    }
+    &.O {
+        background-color: orange;
+    }
+}
