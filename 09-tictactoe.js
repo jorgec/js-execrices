@@ -21,6 +21,7 @@ function makeMove(x, y, current_player, board, moves) {
     }
 
     board[x][y] = current_player;
+    console.log(board);
     return true;
 
 }
@@ -99,6 +100,8 @@ function start() {
 
             if (moves == 9 && !has_winner) {
                 alert('It\'s atay!');
+                $("#current").removeClass(current_player);
+                $("#current").addClass("T");
             }
 
         }
