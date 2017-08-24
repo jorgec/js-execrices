@@ -24,6 +24,18 @@ body {
         border: 1px solid #aaa;
         float: left;
         cursor: pointer;
+        &.flagged {
+            background-color: orange;
+            color: white;
+        }
+        &.has-bomb {
+            background-color: red;
+            color: white;
+        }
+        &.cleared {
+            background-color: white;
+            color: #555;
+        }
     }
 }
 

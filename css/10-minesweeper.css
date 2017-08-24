@@ -21,6 +21,15 @@ body {
     border: 1px solid #aaa;
     float: left;
     cursor: pointer; }
+    #board .cell.flagged {
+      background-color: orange;
+      color: white; }
+    #board .cell.has-bomb {
+      background-color: red;
+      color: white; }
+    #board .cell.cleared {
+      background-color: white;
+      color: #555; }
 
 .hide {
   display: none; }

@@ -25,16 +25,16 @@ function drawBoard(width, height, board) {
     }
 }
 
-function makeArray(w, h, bomb_chance = false, bomb_max = false) {
+function makeArray(w, h, bomb_chance = 0, bomb_max = false) {
     var bomb_count = 0;
     var val = 0;
     var arr = [];
     for (i = 0; i < h; i++) {
         arr[i] = [];
         for (j = 0; j < w; j++) {
-            if (bomb_chance) {
+            var is_bomb = Math.random();
+            if (bomb_chance > 0) {
                 if (bomb_count < bomb_max) {
-                    var is_bomb = Math.random();
                     if (is_bomb <= bomb_chance) {
                         val = '*';
                         bomb_count++;
@@ -101,10 +101,10 @@ function findFreeCellsLeft(x, y, board, proximities) {
         for (var cell_x = x; cell_x >= 0; cell_x--) {
             var cell = proximities[cell_x][y];
             if (cell == 0) {
-                $("#cell-" + cell_x + y).html(cell);
+                $("#cell-" + cell_x + y).html(cell).addClass('cleared');
             } else {
                 if (proximities[cell_x][y] != 9) {
-                    $("#cell-" + cell_x + y).html(cell);
+                    $("#cell-" + cell_x + y).html(cell).addClass('cleared');
                 }
 
                 break;
@@ -118,10 +118,10 @@ function findFreeCellsRight(x, y, board, proximities, width) {
         for (var cell_x = x; cell_x < width; cell_x++) {
             var cell = proximities[cell_x][y];
             if (cell == 0) {
-                $("#cell-" + cell_x + y).html(cell);
+                $("#cell-" + cell_x + y).html(cell).addClass('cleared');
             } else {
                 if (proximities[cell_x][y] != 9) {
-                    $("#cell-" + cell_x + y).html(cell);
+                    $("#cell-" + cell_x + y).html(cell).addClass('cleared');
                 }
 
                 break;
@@ -138,7 +138,7 @@ function findFreeAdjacentCells(x, y, board, proximities, width, height) {
             findFreeCellsRight(x, cell_y, board, proximities, width);
         } else {
             if (cell != 9) {
-                $("#cell-" + x + cell_y).html(cell);
+                $("#cell-" + x + cell_y).html(cell).addClass('cleared');
             }
             break;
         }
@@ -151,7 +151,7 @@ function findFreeAdjacentCells(x, y, board, proximities, width, height) {
             findFreeCellsRight(x, cell_y, board, proximities);
         } else {
             if (cell != 9) {
-                $("#cell-" + x + cell_y).html(cell);
+                $("#cell-" + x + cell_y).html(cell).addClass('cleared');
             }
             break;
         }
@@ -162,7 +162,7 @@ function findFreeAdjacentCells(x, y, board, proximities, width, height) {
 function makeBoard(width, height, bomb_chance, bomb_max) {
 
     var board_init = makeArray(width, height, bomb_chance, bomb_max);
-    if (board_init.bombs == 10 || board_init.bombs <= 5) window.location('10-minesweeper.html');
+    // if (board_init.bombs == bomb_max || board_init.bombs <= 5) location.reload(true);
     var board = board_init.board;
     drawBoard(width, height, board);
     var proximities = calculateProximities(width, height, board);
@@ -184,6 +184,7 @@ function makeBoard(width, height, bomb_chance, bomb_max) {
         var proximity = parseInt(calculateCellProximity(x, y, board, width, height));
         if (cell == '*') {
             $("#boom").removeClass('hide');
+            $(this).addClass('has-bomb');
         }
 
         var free_adjacent = findFreeAdjacentCells(x, y, board, proximities, width, height);
@@ -202,6 +203,7 @@ function makeBoard(width, height, bomb_chance, bomb_max) {
         if (flags_left > 0) {
             flags_left--;
             $("#flags-left").html(flags_left);
+            $(this).addClass('flagged');
             $(this).html(cell);
             if (cell == '*') {
                 bombs_flagged++;
@@ -213,4 +215,4 @@ function makeBoard(width, height, bomb_chance, bomb_max) {
 }
 
 
-makeBoard(9, 9, .10, 10);
+makeBoard(10, 10, .1, 10);
