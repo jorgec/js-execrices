@@ -36,7 +36,8 @@ body {
   text-align: center;
   opacity: .8; }
   #boom .text {
-    padding-top: 25%;
+    position: relative;
+    padding: 10vh 0;
     text-align: center;
     width: 100%;
     font-size: 3rem; }

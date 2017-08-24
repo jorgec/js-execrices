@@ -162,6 +162,7 @@ function findFreeAdjacentCells(x, y, board, proximities, width, height) {
 function makeBoard(width, height, bomb_chance, bomb_max) {
 
     var board_init = makeArray(width, height, bomb_chance, bomb_max);
+    if (board_init.bombs == 10 || board_init.bombs <= 5) window.location('10-minesweeper.html');
     var board = board_init.board;
     drawBoard(width, height, board);
     var proximities = calculateProximities(width, height, board);
@@ -202,6 +203,10 @@ function makeBoard(width, height, bomb_chance, bomb_max) {
             flags_left--;
             $("#flags-left").html(flags_left);
             $(this).html(cell);
+            if (cell == '*') {
+                bombs_flagged++;
+                $("#bombs-flagged").html(bombs_flagged);
+            }
         }
     })
 
