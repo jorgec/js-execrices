@@ -1,0 +1,28 @@
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 1rem; }
+
+#board {
+  width: 50%;
+  margin: auto; }
+  #board .row {
+    clear: both;
+    display: flex;
+    flex: auto; }
+    #board .row:after {
+      content: "";
+      float: none;
+      clear: both;
+      display: block; }
+    #board .row .cell {
+      text-align: center;
+      width: calc(33% - 6px);
+      float: left;
+      height: 150px;
+      overflow: hidden;
+      padding-top: 75px;
+      border: 1px solid #ccc;
+      background-color: #aaa;
+      cursor: pointer; }
+
+/*# sourceMappingURL=09-tictactoe.css.map */
